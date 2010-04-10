@@ -150,7 +150,7 @@ class FF2EE2 {
 	{
 		if ($vals && (preg_match('/^(i|s|a|o|d):(.*);/si', $vals) !== FALSE) && ($tmp_vals = @unserialize($vals)) !== FALSE)
 		{
-			$vals = $this->_unserialize_cleanup($tmp_vals);
+			$vals = FF2EE2::_unserialize_cleanup($tmp_vals);
 		}
 
      	return $vals;
@@ -159,24 +159,60 @@ class FF2EE2 {
 	/**
 	 * Unserialize Cleanup
 	 */
-	private function _unserialize_cleanup($vals)
+	function _unserialize_cleanup($vals)
 	{
 		if (is_array($vals))
 		{
 			foreach ($vals as &$val)
 			{
-				$val = $this->_unserialize_cleanup($val);
+				$val = FF2EE2::_unserialize_cleanup($val);
 			}
 		}
 		else
 		{	
 			$vals = stripslashes($vals);
 
-			if ($this->EE->config->item('auto_convert_high_ascii') == 'y')
+			if (get_instance()->config->item('auto_convert_high_ascii') == 'y')
 			{
-				$this->EE->load->helper('text');
+				get_instance()->load->helper('text');
 				$vals = entities_to_ascii($vals);
 			}
+		}
+
+		return $vals;
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Serialize
+	 */
+	function _serialize($vals)
+	{
+		if (get_instance()->config->item('auto_convert_high_ascii') == 'y')
+		{
+			$vals = FF2EE2::_array_ascii_to_entities($vals);
+		}
+
+     	return addslashes(serialize($vals));
+	}
+
+	/**
+	 * ASCII to Entities
+	 */
+	function _array_ascii_to_entities($vals)
+	{
+		if (is_array($vals))
+		{
+			foreach ($vals as &$val)
+			{
+				$val = FF2EE2::_array_ascii_to_entities($val);
+			}
+		}
+		else
+		{
+			get_instance()->load->helper('text');
+			$vals = ascii_to_entities($vals);
 		}
 
 		return $vals;
