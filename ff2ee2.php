@@ -116,7 +116,7 @@ class FF2EE2 {
 		//  Convert each of this fieldtype's fields
 		// -------------------------------------------
 
-		$fields = $this->EE->db->get_where('channel_fields', array('field_type', 'ftype_id_'.$this->fieldtype_id));
+		$fields = $this->EE->db->where('field_type', 'ftype_id_'.$this->fieldtype_id)->get('channel_fields');
 
 		foreach($fields->result_array() as $field)
 		{
