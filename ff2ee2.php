@@ -39,9 +39,9 @@
  *         $converter = new FF2EE2('class', array(&$this, 'update_field_settings'));
  *
  * The callback function you pass should accept two parameters,
- * $field_id and $field_settings, and should return $field_settings
+ * $field_settings and $field, and should return $field_settings
  * 
- *     function update_field_settings($field_id, $field_settings)
+ *     function update_field_settings($field_id, $field)
  *     {
  *         if (isset($field_settings['weblogs']))
  *         {
