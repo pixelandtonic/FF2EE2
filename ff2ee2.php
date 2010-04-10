@@ -116,7 +116,7 @@ class FF2EE2 {
 		//  Convert each of this fieldtype's fields
 		// -------------------------------------------
 
-		$fields = $this->EE->db->select('field_id, ff_settings')->where('field_type', 'ftype_id_'.$this->fieldtype_id)->get('channel_fields');
+		$fields = $this->EE->db->get_where('channel_fields', array('field_type', 'ftype_id_'.$this->fieldtype_id));
 
 		foreach($fields->result_array() as $field)
 		{
@@ -126,7 +126,7 @@ class FF2EE2 {
 			// Does the fieldtype want to modify these?
 			if ($field_settings_callback)
 			{
-				$field_settings = call_user_func($field_settings_callback, $field_id, $field_settings);
+				$field_settings = call_user_func($field_settings_callback, $field_settings, $field);
 			}
 
 			// serialize and encode with base64
