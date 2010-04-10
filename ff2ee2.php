@@ -146,7 +146,7 @@ class FF2EE2 {
 	/**
 	 * Unserialize
 	 */
-	private function _unserialize($vals)
+	function _unserialize($vals)
 	{
 		if ($vals && (preg_match('/^(i|s|a|o|d):(.*);/si', $vals) !== FALSE) && ($tmp_vals = @unserialize($vals)) !== FALSE)
 		{
