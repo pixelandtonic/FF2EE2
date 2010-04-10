@@ -2,9 +2,16 @@
 
 
 /**
- * FieldFrame-to-EE2 Converter
+ * FF2EE2
  * 
- * Aids in converting a FieldFrame-based fieldtype's data over to EE2
+ * FieldFrame-to-EE2 Data Converter
+ * 
+ * This class was made to be imported by an EE2 fieldtype
+ * within its install() function, to aid in converting its
+ * prior FieldFrame-based data over to the way EE2 expects.
+ * 
+ * TODO: Provide a second callback for converting array-based entry data
+ * which EE2's field API does not support
  * 
  * -------------------------------------------
  *  Usage
