@@ -77,9 +77,7 @@ class FF2EE2 {
 		//  Was FieldFrame even installed?
 		// -------------------------------------------
 
-		$query = $this->EE->db->query('SHOW TABLES LIKE "exp_ff_fieldtypes"');
-
-		if (! $query->num_rows())
+		if (! $this->EE->db->table_exists('ff_fieldtypes'))
 		{
 			return;
 		}
