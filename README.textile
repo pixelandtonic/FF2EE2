@@ -6,6 +6,7 @@ This class was made to be imported by an EE2 fieldtype within its install() func
 
 *TODO:* Provide a second callback for converting array-based entry data which EE2's field API does not support
 
+
 h2. Usage
 
 If no changes will need to be made to your class name or individual field settings, you can simply run and return:
@@ -18,18 +19,18 @@ bc. function install()
     return $converter->global_settings;
 }
 
-If your new class name differs from your old one,
-pass an array in the first parameter:
+
+If your new class name differs from your old one, pass an array in the first parameter:
 
 bc.     $converter = new FF2EE2(array('old_class', 'new_class'));
 
-If you need to make changes to individual field settings,
-pass a callback function in the second parameter:
+
+If you need to make changes to individual field settings, pass a callback function in the second parameter:
 
 bc.     $converter = new FF2EE2('class', array(&$this, 'update_field_settings'));
 
-The callback function you pass should accept two parameters,
-$field_id and $field_settings, and should return $field_settings
+
+The callback function you pass should accept two parameters, $field_id and $field_settings, and should return $field_settings
 
 bc. function update_field_settings($field_id, $field_settings)
 {
